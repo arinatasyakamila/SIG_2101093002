@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan 3 Menampilkan Tooltip dan Poopuo </title>
+    <link rel="stylesheet" href="leaflet.css"/>
+    <script src="leaflet.js"></script>
+</head>
+<body>
+    <div id="mapku" style="width: 100%; height: 600px;"></div>
+
+</body>
+<script type="text/javascript">
+     var mymap = L.map('mapku').setView([-0.9137822,100.4640162],17);
+    
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom:18,
+        id:'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(mymap);
+
+    var info_pnp = '<p style="text-align: center;"> <img src="https://lh5.googleusercontent.com/p/AF1QipNVDp0t3hfhF5Jd45X6lQvDLQNBjmS3zt3achgN=w408-h306-k-no" width="250px" height="100px"></p><p style="text-align: justify;">Politeknik Negeri Padang didirikan pada tahun 1987, di mana keberadaan politeknik merupakan salah satu dari 17 (tujuh belas) politeknik pertama di Indonesia, yang bertujuan menjawab tantangan perkembangan dunia industri dan dunia usaha yang menuntut kompetensi dari tenaga-tenaga kerja terampil, professional dan mandiri yang lebih mengutamakan attitude, knowledge dan skill serta kompeten di bidangnya.</p>';
+    L.marker([-0.9137822,100.4640162]).bindTooltip("Politeknik Negeri Padang").bindPopup(info_pnp).addTo(mymap);
+
+    var info_pnp = '<p style="text-align: center;"> <img src="https://lh5.googleusercontent.com/p/AF1QipNVDp0t3hfhF5Jd45X6lQvDLQNBjmS3zt3achgN=w408-h306-k-no" width="250px" height="100px"></p><p style="text-align: justify;">Politeknik Negeri Padang didirikan pada tahun 1987, di mana keberadaan politeknik merupakan salah satu dari 17 (tujuh belas) politeknik pertama di Indonesia, yang bertujuan menjawab tantangan perkembangan dunia industri dan dunia usaha yang menuntut kompetensi dari tenaga-tenaga kerja terampil, professional dan mandiri yang lebih mengutamakan attitude, knowledge dan skill serta kompeten di bidangnya.</p>';
+    L.marker([-0.900556650430282, 100.36131090322417]).bindTooltip("Rumah saya").bindPopup(info_pnp).addTo(mymap);
+
+    var circle = L.circle ([-0.900347463967122, 100.3612733522981],{
+        color: 'red',
+        fillColor: 'f03',
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(mymap).bindPopup('I am dogy');
+
+
+    var polygon = L.polygon([
+        [-0.9137822,100.4640162],
+        [-0.9144822,100.4600162],
+        [-0.900347463967122, 100.3612733522981]
+    ]).addTo(mymap).bindPopup('I am a polygon')
+
+    var popup = L.popup()
+        .setLatLng(e.latlng)
+        .setContent('you clicked the map at'+ e.latlng.toString())
+        .openOn(mymap);
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent('You clicked the map at' + e.latlng.toString())
+            .openOn(mymap);
+    }
+    mymap.on('click',onMapClick);
+   
+
+</script>
+</html>
